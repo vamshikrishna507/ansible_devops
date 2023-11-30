@@ -1,0 +1,19 @@
+---
+- name: Install Git
+  hosts: your_target_host
+  tasks:
+    - name: Add Git PPA repository
+      apt_repository:
+        repo: ppa:git-core/ppa
+        state: present
+
+    - name: Update package list
+      apt:
+        update_cache: yes
+
+    - name: Install specific version of Git
+      apt:
+        name: git={{ git_version }}-1~ppa0~ubuntu{{ ansible_distribution_release }}+1
+        state: present
+      vars:
+        git_version: 2.35.1 # Replace with the version available in the repository
