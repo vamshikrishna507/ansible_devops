@@ -1,6 +1,7 @@
 ---
 - name: Install Git
-  hosts: your_target_host
+  hosts: all
+  become: yes
   tasks:
     - name: Add Git PPA repository
       apt_repository:
